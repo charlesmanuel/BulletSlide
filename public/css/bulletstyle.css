@@ -1,0 +1,331 @@
+.bulletpage {
+  padding:40px 30px 30px;
+  background-color:white!important;
+  border-width:3px!important;
+  margin-bottom:400px;
+  text-align:left;
+  min-height:474px;
+}
+
+textarea {
+  overflow-x: hidden;
+  min-height:30px;
+}
+
+.test[placeholder]:empty:before {
+    content: attr(placeholder);
+    color: #555;
+}
+
+.topmenu {
+  text-align:left;
+  margin-bottom:20px;
+  padding-left:5px;
+}
+
+.topmenu button {
+  padding:9px!important;
+  min-width:140px;
+  margin-right:10px;
+}
+
+.test[placeholder]:empty:focus:before {
+    content: "";
+}
+
+.test {
+  cursor:text;
+}
+
+p {
+  font-style:italic;
+}
+
+.test2 {
+  width:84%;
+  display:inline-block;
+  vertical-align: middle;
+  padding-left:10px;
+}
+
+
+.btncol {
+  padding:0!important;
+  width:13%;
+  display:inline-block!important;
+  font-size:1rem!important;
+  vertical-align: top;
+  margin-left:-3px!important;
+  border-width:.5px;
+}
+
+
+.minusbutton {
+  padding-left:11.34px!important;
+  padding-right:11.34px!important;
+  padding-top:2px!important;
+  padding-bottom:2px!important;
+  border-color:#000000!important;
+  border-radius:0!important;
+  border-left-color:#FF0000;
+  border-right-width:0px;
+  border-left-width:0px;
+}
+
+.addbutton {
+  padding-left:7px!important;
+  padding-right:7px!important;
+  padding-top:2px!important;
+  padding-bottom:2px!important;
+  border-top-left-radius:0!important;
+  border-bottom-left-radius:0!important;
+  border-color:#000000!important;
+}
+
+.newpt {
+  padding-left:9.34px!important;
+  padding-right:9.34px!important;
+  padding-top:2px!important;
+  padding-bottom:2px!important;
+  border-color:#000000!important;
+  background-color:#000000!important;
+
+}
+.newpt2 {
+  text-align:center!important;
+  width:84%!important;
+  border-color:#000000!important;
+}
+
+#secretpt {
+  display:none;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 80px;
+  max-width:80px;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  border:solid;
+  border-width:1px!important;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 3px 4px;
+  text-decoration: none;
+  display: block;
+  vertical-align: middle;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+#secretul {
+  margin-top:15px;
+  display:none;
+}
+#secretul textarea {
+  width:82.8%;
+  display:inline-block;
+  vertical-align: middle;
+  padding-left:10px;
+}
+#secretimg .imgslot {
+  width:82.8%;
+  display:inline-block;
+  vertical-align: middle;
+  border-style:solid;
+  border-color:#d3d3d3;
+  border-width:1px;
+  border-right-style:none;
+}
+
+#secretul ul {
+  margin-bottom:20px;
+}
+
+.dropdown-content hr {
+  margin-top:.3px;
+  margin-bottom:.3px;
+}
+
+.dropdown-content a img {
+  float:right;
+  padding-top:5.3px;
+}
+
+ul ul ul textarea {
+  width:81.5%!important;
+}
+
+ul ul ul .imgslot {
+  width:81.5%!important;
+}
+
+ul ul ul .btncol {
+  width:14%!important;
+}
+ul ul ul ul textarea {
+  width:80%!important;
+
+}
+ul ul ul ul .imgslot {
+  width:80%!important;
+}
+
+ul ul ul ul .btncol {
+  width:14.5%!important;
+}
+
+ul ul ul #secretul .minusbutton {
+  border-right:solid;
+  border-right-width:1px;
+  padding-bottom:2px!important;
+  border-top-right-radius: 4px!important;
+  border-bottom-right-radius: 4px!important;
+}
+ul ul ul ul .addbutton {
+  display:none;
+}
+
+header li li{
+  margin-bottom:20px;
+}
+header li li li{
+  margin-bottom:20px;
+}
+
+header li {
+  margin-bottom:15px;
+}
+
+
+.texticonadded {
+  background-image:url(../svgs/icons/document-text.svg);
+  background-position: right 10px center;
+  background-repeat:no-repeat;
+  background-size:1.35rem;
+  padding-right: 32px;
+}
+
+.imgiconadded {
+  background-image:url(../svgs/icons/image.svg);
+  background-position: right 10px center;
+  background-repeat:no-repeat;
+  background-size:1.35rem;
+  padding-right: 32px;
+}
+
+
+
+.linkiconadded {
+  background-image:url(../svgs/icons/box-arrow-up-right.svg);
+  background-position: right 10px center;
+  background-repeat:no-repeat;
+  background-size:1.35rem;
+  padding-right: 32px;
+}
+
+.texticonadded.linkiconadded {
+  background-image:url(../svgs/icons/box-arrow-up-right.svg), url(../svgs/icons/document-text.svg);
+  background-position: right 10px center, right 30px center;
+  background-repeat:no-repeat, no-repeat;
+  background-size:1.35rem, 1.35rem;
+  padding-right: 43px;
+}
+
+.texticonadded.imgiconadded {
+  background-image:url(../svgs/icons/image.svg), url(../svgs/icons/document-text.svg);
+  background-position: right 10px center, right 30px center;
+  background-repeat:no-repeat, no-repeat;
+  background-size:1.35rem, 1.35rem;
+  padding-right: 43px;
+}
+
+.linkiconadded.imgiconadded {
+  background-image:url(../svgs/icons/box-arrow-up-right.svg), url(../svgs/icons/image.svg);
+  background-position: right 10px center, right 30px center;
+  background-repeat:no-repeat, no-repeat;
+  background-size:1.35rem, 1.35rem;
+  padding-right: 43px;
+}
+
+.linkiconadded.imgiconadded.texticonadded {
+  background-image:url(../svgs/icons/box-arrow-up-right.svg), url(../svgs/icons/image.svg), url(../svgs/icons/document-text.svg);
+  background-position: right 10px center, right 30px center, right 50px center;
+  background-repeat:no-repeat, no-repeat, no-repeat;
+  background-size:1.35rem, 1.35rem, 1.35rem;
+  padding-right: 68px;
+}
+
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 330px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 25%;
+}
+label {
+  color:black!important;
+}
+
+#inputURL {
+  width: 100%;
+  margin-bottom:10px;
+}
+.modal-content button {
+  display:inline!important;
+  width:71px;
+  padding:4px 6px !important;
+  margin-right:10px!important;
+}
+
+#secretimg {
+  margin-top:15px;
+  display:none;
+  list-style:none;
+}
+
+
+#secretimg .minusbutton {
+  border-right:solid;
+  border-right-width:1px;
+  padding-bottom:3px!important;
+  border-top-right-radius: 4px!important;
+  border-bottom-right-radius: 4px!important;
+}
+
+.addicon {
+  padding-bottom:2px;
+  pointer-events: none;
+}
+
+.imgslot input {
+  min-height:29px;
+  vertical-align: middle;
+}
+
+.URLtext {
+  display:none;
+}
+
+.editorpage {
+  padding-top:10rem!important;
+}

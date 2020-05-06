@@ -1,0 +1,109 @@
+.icon {
+  min-height:200px;
+  padding:4,3,3;
+  background-color:white!important;
+
+}
+
+.previewthumb li {
+  font-size:10px!important;
+}
+
+.previewthumb {
+  max-height:300px!important;
+  overflow:hidden;
+  border-width:3px!important;
+  min-width:255px!important;
+  max-width:255px!important;
+}
+
+
+ul:after {
+  content:'';
+  width:80%;
+  height:297px;
+  position:absolute;
+  text-align: center;
+  left:18px;
+  top:0;
+  background:linear-gradient(transparent 150px, white);
+}
+
+.prevThumb h1, h2, h3, h4, h5 {
+  margin-top:10px;
+  text-align:center;
+  color:#FFFFFF;
+}
+
+.prevThumb a{
+  text-decoration:none!important;
+  color: #000000!important;
+}
+
+.masthead2 a{
+  color:#000000!important;
+  text-decoration:none!important;
+}
+
+
+
+.masthead2 {
+  position: relative;
+  background-color: #343a40;
+  background: url("../img/bg-masthead.jpg") no-repeat center center;
+  background-size: 100% 100%;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+  background-attachment:fixed;
+}
+
+
+
+/*
+.masthead2.overlay {
+  position: absolute;
+  background-color: #212529;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.3;
+}
+*/
+
+.prevbyline {
+  margin-left:30px;
+  font-size: 12px;
+}
+
+
+header.masthead2 {
+  position: relative;
+  background-color: #343a40;
+  background: url("./img/bg-masthead.jpg") no-repeat center center;
+  background-size: 100% 100%;
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+  background-attachment:fixed;
+}
+
+header.masthead2 .overlay {
+  position: absolute;
+  background-color: #212529;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0.3;
+}
+
+nav {
+  border:black;
+}
+
+
+@media only screen and (max-width: 990px) {
+  ul:after {
+    display:none;
+  }
+}

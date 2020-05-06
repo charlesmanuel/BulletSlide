@@ -1,0 +1,15 @@
+{
+
+    "manifest_version": 2,
+    "name": "TL;DR - Summary of BBC news articles",
+    "version": "1.0",
+  
+    "description": "This extension creates a summary of BBC news articles using TF*IDF", 
+    "content_scripts": [
+      {
+        "matches": ["*://www.bbc.co.uk/news/*"],
+        "js": ["jquery.js", "tldr.js"]
+      }
+    ]
+  
+}

@@ -1,0 +1,35 @@
+#boxes{
+background-color:#eef0f4;
+}
+
+#boxes .box{
+  float:left;
+  width:33%;
+  padding:50px;
+  text-align:center;
+}
+
+#boxes .box h3{
+  margin-top:20px;
+  font-size:38px;
+}
+
+#boxes .box p {
+  margin-top:20px;
+  text-align: justify;
+  font-size:18px;
+}
+
+
+#boxes .box img{
+  width:180px;
+  height:220px;
+}
+
+#boxes .boxcontainer{
+  padding-top:100px;
+  padding-bottom:100px;
+  width:80%;
+  margin:auto;
+  overflow:hidden;
+}
