@@ -24,7 +24,7 @@ head
 // Navigation
 nav.navbar.bg-white.border-bottom.border-dark.static-top(style='border-width:3px!important;')
   .container.container3
-    a.navbar-brand(style='color:#000000 !important' href='./index.html')
+    a.navbar-brand(style='color:#000000 !important' href='./index')
       img(style='height:60px;margin-top:-3px; padding-right:10px;vertical-align:center;' src='./img/bullet.png')
       | BulletSlides
     a.btn.btn-primary(href='#') Sign In
@@ -33,7 +33,8 @@ header.masthead2.text-center.editorpage
   .container(style='margin-top:-80px')
     .row
       .col-xl-7.mx-auto.topmenu
-        button#savepreview.btn.btn-primary Save &amp; Preview
+        button#savepreview.btn.btn-primary Save
+        a#present.btn.btn-primary(href='./preview') Present
       #focused.col-xl-7.bg-white.mx-auto.border.border-dark.rounded.bulletpage(contenteditable='true')
         h2#intitle.test(style='margin-left:24px' placeholder='Title')
         p#inauthor.test(style='margin-left:24px' placeholder='Your Name')

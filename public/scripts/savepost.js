@@ -87,7 +87,15 @@ $(document).ready(function(){
     });
 
     var inputdata = JSON.stringify(masterarray, null, '\t');
+    var checkURL = window.location.href;
+    var checkURL2 = checkURL.split("#");
+    var checkURL3 = checkURL2[0];
+    var theURL = checkURL3 + '/save';
 
-    $.post("/editor", masterarray);
+    console.log(theURL);
+    console.log(window.location.href);
+    $.post(theURL, masterarray);
+    console.log(inputdata);
+    console.log(masterarray);
   });
 });
