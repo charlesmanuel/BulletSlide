@@ -24,60 +24,36 @@ head
 // Navigation
 nav.navbar.bg-white.border-bottom.border-dark.static-top(style='border-width:3px!important;')
   .container.container3
-    a.navbar-brand(style='color:#000000 !important' href='./index')
+    a.navbar-brand(style='color:#000000 !important' href='/')
       img(style='height:60px;margin-top:-3px; padding-right:10px;vertical-align:center;' src='./img/bullet.png')
       | BulletSlides
-    a.btn.btn-primary(href='#') Sign In
+    div
+      a.btn.btn-primary(href='../') Library
+      a.btn.btn-danger(href='/logout') Log Out
 // Masthead
-header.masthead2.text-center.editorpage
-  .container(style='margin-top:-80px')
-    .row
-      .col-xl-7.mx-auto.topmenu
-        button#savepreview.btn.btn-primary Save
-        a#present.btn.btn-primary(href='./preview') Present
-      #focused.col-xl-7.bg-white.mx-auto.border.border-dark.rounded.bulletpage(contenteditable='true')
-        h2#intitle.test(style='margin-left:24px' placeholder='Title')
-        p#inauthor.test(style='margin-left:24px' placeholder='Your Name')
-        div(contenteditable='false')
-          hr
-          ul#ultext(style='text-align:left')
-            // modal link window
-            #myModal.modal
-              .modal-content
-                label(for='inputURL') Web address (URL): 
-                input#inputURL(type='text' name='inputURL')
-                .buttonz
-                  button#submitlink.btn.btn-primary Save
-                  button#cancellink.btn.btn-secondary Cancel
-            li#secretpt
-              textarea.test2(data-icons='0' rows='1')
-              a.URLtext(href='#')
-              .btncol(align='left')
-                button.btn.btn-danger.minusbutton(href='#!') &minus;
-                button.btn.btn-primary.addbutton(href='#!')
-                  img.addicon(src='./svgs/icons/list-ul.svg')
-                .dropdown-content
-                  a.textbutton(href='#!')
-                    | Text
-                    img(src='./svgs/icons/document-text.svg')
-                  hr
-                  a.imgbutton(href='#!')
-                    | Image
-                    img(src='./svgs/icons/image.svg')
-                  hr
-                  a.linkbtn(href='#!')
-                    | Link
-                    img(src='./svgs/icons/box-arrow-up-right.svg')
-            ul#secretimg
-              li
-                .imgslot
-                  input(type='file')
-                .btncol(align='left')
-                  button.btn.btn-danger.minusbutton(href='#!') &minus;
-            ul#secretul
-              li
+if(found == "false")
+  header.masthead2.text-center.editorpage
+    .container(style='margin-top:-80px')
+      .row
+        .col-xl-7.mx-auto.topmenu
+          button#savepreview.btn.btn-primary Save
+          a#present.btn.btn-primary(href='./preview') Present
+        #focused.col-xl-7.bg-white.mx-auto.border.border-dark.rounded.bulletpage(contenteditable='true')
+          h2#intitle.test(style='margin-left:24px' placeholder='Title')
+          p#inauthor.test(style='margin-left:24px' placeholder='Your Name')
+          div(contenteditable='false')
+            hr
+            ul#ultext(style='text-align:left')
+              // modal link window
+              #myModal.modal
+                .modal-content
+                  label(for='inputURL') Web address (URL): 
+                  input#inputURL(type='text' name='inputURL')
+                  .buttonz
+                    button#submitlink.btn.btn-primary Save
+                    button#cancellink.btn.btn-secondary Cancel
+              li#secretpt
                 textarea.test2(data-icons='0' rows='1')
-                a.URLtext(href='#')
                 a.URLtext(href='#')
                 .btncol(align='left')
                   button.btn.btn-danger.minusbutton(href='#!') &minus;
@@ -87,74 +63,239 @@ header.masthead2.text-center.editorpage
                     a.textbutton(href='#!')
                       | Text
                       img(src='./svgs/icons/document-text.svg')
-                    hr
-                    a.imgbutton(href='#!')
+                    //hr
+                    //a.imgbutton(href='#!')
                       | Image
                       img(src='./svgs/icons/image.svg')
                     hr
                     a.linkbtn(href='#!')
                       | Link
                       img(src='./svgs/icons/box-arrow-up-right.svg')
-            li#firstpt.point
-              textarea.test2(data-icons='0' rows='1' placeholder='Bullet 1')
-              a.URLtext(href='#')
-              .btncol(align='left')
-                button.btn.btn-danger.minusbutton(href='#!') &minus;
-                button.btn.btn-primary.addbutton(href='#!')
-                  img.addicon(src='./svgs/icons/list-ul.svg')
-                .dropdown-content
-                  a.textbutton(href='#!')
-                    | Text
-                    img(src='./svgs/icons/document-text.svg')
-                  hr
-                  a.imgbutton(href='#!')
-                    | Image
-                    img(src='./svgs/icons/image.svg')
-                  hr
-                  a.linkbtn(href='#!')
-                    | Link
-                    img(src='./svgs/icons/box-arrow-up-right.svg')
-            li.point
-              textarea.test2(data-icons='0' rows='1' placeholder='Bullet 2')
-              a.URLtext(href='#')
-              .btncol(align='left')
-                button.btn.btn-danger.minusbutton(href='#!') &minus;
-                button.btn.btn-primary.addbutton(href='#!')
-                  img.addicon(src='./svgs/icons/list-ul.svg')
-                .dropdown-content
-                  a.textbutton(href='#!')
-                    | Text
-                    img(src='./svgs/icons/document-text.svg')
-                  hr
-                  a.imgbutton(href='#!')
-                    | Image
-                    img(src='./svgs/icons/image.svg')
-                  hr
-                  a.linkbtn(href='#!')
-                    | Link
-                    img(src='./svgs/icons/box-arrow-up-right.svg')
-            li.point
-              textarea.test2(data-icons='0' rows='1' placeholder='Bullet 3')
-              a.URLtext(href='#')
-              .btncol(align='left')
-                button.btn.btn-danger.minusbutton(href='#!') &minus;
-                button.btn.btn-primary.addbutton(href='#!')
-                  img.addicon(src='./svgs/icons/list-ul.svg')
-                .dropdown-content
-                  a.textbutton(href='#!')
-                    | Text
-                    img(src='./svgs/icons/document-text.svg')
-                  hr
-                  a.imgbutton(href='#!')
-                    | Image
-                    img(src='./svgs/icons/image.svg')
-                  hr
-                  a.linkbtn(href='#!')
-                    | Link
-                    img(src='./svgs/icons/box-arrow-up-right.svg')
-          ul
-            li
-              button.btn.btn-light.newpt2(href='#!') +
+              ul#secretimg
+                li
+                  .imgslot
+                    input(type='file')
+                  .btncol(align='left')
+                    button.btn.btn-danger.minusbutton(href='#!') &minus;
+              ul#secretul
+                li
+                  textarea.test2(data-icons='0' rows='1')
+                  a.URLtext(href='#')
+                  a.URLtext(href='#')
+                  .btncol(align='left')
+                    button.btn.btn-danger.minusbutton(href='#!') &minus;
+                    button.btn.btn-primary.addbutton(href='#!')
+                      img.addicon(src='./svgs/icons/list-ul.svg')
+                    .dropdown-content
+                      a.textbutton(href='#!')
+                        | Text
+                        img(src='./svgs/icons/document-text.svg')
+                      //hr
+                      //a.imgbutton(href='#!')
+                        | Image
+                        img(src='./svgs/icons/image.svg')
+                      hr
+                      a.linkbtn(href='#!')
+                        | Link
+                        img(src='./svgs/icons/box-arrow-up-right.svg')
+              li#firstpt.point
+                textarea.test2(data-icons='0' rows='1' placeholder='Bullet 1')
+                a.URLtext(href='#')
+                .btncol(align='left')
+                  button.btn.btn-danger.minusbutton(href='#!') &minus;
+                  button.btn.btn-primary.addbutton(href='#!')
+                    img.addicon(src='./svgs/icons/list-ul.svg')
+                  .dropdown-content
+                    a.textbutton(href='#!')
+                      | Text
+                      img(src='./svgs/icons/document-text.svg')
+                    //hr
+                    //a.imgbutton(href='#!')
+                      | Image
+                      img(src='./svgs/icons/image.svg')
+                    hr
+                    a.linkbtn(href='#!')
+                      | Link
+                      img(src='./svgs/icons/box-arrow-up-right.svg')
+              li.point
+                textarea.test2(data-icons='0' rows='1' placeholder='Bullet 2')
+                a.URLtext(href='#')
+                .btncol(align='left')
+                  button.btn.btn-danger.minusbutton(href='#!') &minus;
+                  button.btn.btn-primary.addbutton(href='#!')
+                    img.addicon(src='./svgs/icons/list-ul.svg')
+                  .dropdown-content
+                    a.textbutton(href='#!')
+                      | Text
+                      img(src='./svgs/icons/document-text.svg')
+                    //hr
+                    //a.imgbutton(href='#!')
+                      | Image
+                      img(src='./svgs/icons/image.svg')
+                    hr
+                    a.linkbtn(href='#!')
+                      | Link
+                      img(src='./svgs/icons/box-arrow-up-right.svg')
+              li.point
+                textarea.test2(data-icons='0' rows='1' placeholder='Bullet 3')
+                a.URLtext(href='#')
+                .btncol(align='left')
+                  button.btn.btn-danger.minusbutton(href='#!') &minus;
+                  button.btn.btn-primary.addbutton(href='#!')
+                    img.addicon(src='./svgs/icons/list-ul.svg')
+                  .dropdown-content
+                    a.textbutton(href='#!')
+                      | Text
+                      img(src='./svgs/icons/document-text.svg')
+                    //hr
+                    //a.imgbutton(href='#!')
+                      | Image
+                      img(src='./svgs/icons/image.svg')
+                    hr
+                    a.linkbtn(href='#!')
+                      | Link
+                      img(src='./svgs/icons/box-arrow-up-right.svg')
+            ul
+              li
+                button.btn.btn-light.newpt2(href='#!') +
+if(found == "true")
+  - function iconchooser(point) {
+    - var begin = "test2";
+    - if (point.hasSubpoint == "true"){
+      - begin = begin + " texticonadded";
+    - }
+    - if (point.hasSubimg == "true"){
+      - begin = begin + " imgiconadded";
+    - }
+    - if (point.hasLink == "true"){
+      - begin = begin + " linkiconadded";
+    - }
+    - return (begin);
+  - }
+
+  mixin newpoint(point)
+    if(point.type == "text")
+      textarea(class = iconchooser(point) rows="1")= point.content        
+      if(point.hasLink == "true")
+        a.URLtext(href=point.linktext)
+      else
+        a.URLtext(href='#')
+      .btncol(align='left')
+        button.btn.btn-danger.minusbutton(href='#!') &minus;
+        button.btn.btn-primary.addbutton(href='#!')
+          img.addicon(src='./svgs/icons/list-ul.svg')
+        .dropdown-content
+          a.textbutton(href='#!')
+            | Text
+            img(src='./svgs/icons/document-text.svg')
+          //hr
+          //a.imgbutton(href='#!')
+            | Image
+            img(src='./svgs/icons/image.svg')
+          hr
+          a.linkbtn(href='#!')
+            | Link
+            img(src='./svgs/icons/box-arrow-up-right.svg')
+    else
+      .imgslot
+        input(type='file')
+      .btncol(align='left')
+        button.btn.btn-danger.minusbutton(href='#!') &minus;
+
+
+  header.masthead2.text-center.editorpage
+    .container(style='margin-top:-80px')
+      .row
+        .col-xl-7.mx-auto.topmenu
+          button#savepreview.btn.btn-primary Save
+          a#present.btn.btn-primary(href='./preview') Present
+        #focused.col-xl-7.bg-white.mx-auto.border.border-dark.rounded.bulletpage(contenteditable='true')
+          h2#intitle.test(style='margin-left:24px' placeholder='Title') #{title}
+          p#inauthor.test(style='margin-left:24px' placeholder='Your Name') #{author}
+          div(contenteditable='false')
+            hr
+            ul#ultext(style='text-align:left')
+              // modal link window
+              #myModal.modal
+                .modal-content
+                  label(for='inputURL') Web address (URL): 
+                  input#inputURL(type='text' name='inputURL')
+                  .buttonz
+                    button#submitlink.btn.btn-primary Save
+                    button#cancellink.btn.btn-secondary Cancel
+              li#secretpt
+                textarea.test2(data-icons='0' rows='1')
+                a.URLtext(href='#')
+                .btncol(align='left')
+                  button.btn.btn-danger.minusbutton(href='#!') &minus;
+                  button.btn.btn-primary.addbutton(href='#!')
+                    img.addicon(src='./svgs/icons/list-ul.svg')
+                  .dropdown-content
+                    a.textbutton(href='#!')
+                      | Text
+                      img(src='./svgs/icons/document-text.svg')
+                    //hr
+                    //a.imgbutton(href='#!')
+                      | Image
+                      img(src='./svgs/icons/image.svg')
+                    hr
+                    a.linkbtn(href='#!')
+                      | Link
+                      img(src='./svgs/icons/box-arrow-up-right.svg')
+              ul#secretimg
+                li
+                  .imgslot
+                    input(type='file')
+                  .btncol(align='left')
+                    button.btn.btn-danger.minusbutton(href='#!') &minus;
+              ul#secretul
+                li
+                  textarea.test2(data-icons='0' rows='1')
+                  a.URLtext(href='#')
+                  a.URLtext(href='#')
+                  .btncol(align='left')
+                    button.btn.btn-danger.minusbutton(href='#!') &minus;
+                    button.btn.btn-primary.addbutton(href='#!')
+                      img.addicon(src='./svgs/icons/list-ul.svg')
+                    .dropdown-content
+                      a.textbutton(href='#!')
+                        | Text
+                        img(src='./svgs/icons/document-text.svg')
+                      //hr
+                      //a.imgbutton(href='#!')
+                        | Image
+                        img(src='./svgs/icons/image.svg')
+                      hr
+                      a.linkbtn(href='#!')
+                        | Link
+                        img(src='./svgs/icons/box-arrow-up-right.svg')
+              if(bulletsEmpty == "false")
+                each point1 in bullets
+                  li.point
+                    +newpoint(point1)
+                    if(point1.hasSubpoint == "true")
+                      ul#secretul.point(style={display: 'block'})
+                        each subpt1 in point1.subpts
+                          li.point
+                            +newpoint(subpt1)
+                            if(subpt1.hasSubpoint == "true")
+                              ul#secretul.point(style={display: 'block'})
+                                each subpt2 in subpt1.subpts
+                                  li.point
+                                    +newpoint(subpt2)
+                                    if(subpt2.hasSubpoint == "true")
+                                      ul#secretul.point(style={display: 'block'})
+                                        each subpt3 in subpt2.subpts
+                                          li.point
+                                            +newpoint(subpt3)
+                                            if(subpt3.hasSubpoint == "true")
+                                              ul#secretul.point(style={display: 'block'})
+                                                each subpt4 in subpt3.subpts
+                                                  li.point
+                                                    +newpoint(subpt4)
+            ul
+              li
+                button.btn.btn-light.newpt2(href='#!') +
 // Footer
 footer.footer.bg-light
   .container

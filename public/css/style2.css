@@ -1,7 +1,7 @@
 
 
 .dropper .litext:hover{
-  background-color:#e6e6e6;"
+  background-color:#e6e6e6;
 }
 .dropper li {
   cursor:pointer!important;
@@ -9,6 +9,7 @@
 
 header li{
   margin-bottom:10px;
+  word-wrap: break-word;
 }
 
 footer {
@@ -42,10 +43,6 @@ footer a {
 }
 
 
-
-#drop {
-
-}
 
 label{
   color:white;
@@ -144,9 +141,6 @@ option {
 
 }
 
-.hiddentweet {
-
-}
 
 .previewthumb li {
   font-size:10px!important;

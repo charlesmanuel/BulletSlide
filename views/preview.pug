@@ -18,92 +18,96 @@ head
 // Navigation
 nav.navbar.bg-white.border-bottom.border-dark.static-top(style='border-width:3px!important;')
   .container.container3
-    a.navbar-brand(style='color:#000000 !important' href='./index.html')
+    a.navbar-brand(style='color:#000000 !important' href='/')
       img(style='height:60px;margin-top:-3px; padding-right:10px;vertical-align:center;' src='./img/bullet.png')
       | BulletSlides
-    a.btn.btn-primary(href='#') Sign In
+    div
+      a.btn.btn-primary(href='../') Library
+      a.btn.btn-danger(href='/logout') Log Out
 header.masthead
   .container(style='margin-top:-80px')
     .row
+      .col-xl-7.mx-auto.topmenu(style='margin-bottom:10px; padding-left:5px!important')
+          a#present.btn.btn-danger(href='./editor') Edit
       .col-xl-7.bg-white.mx-auto.border.border-dark.rounded(style='padding:40px 30px 30px; background-color:white!important; border-width:3px!important; margin-bottom:1000px!important')
-        h2(style='margin-left:24px') #{title}
-        byline(style='margin-left:24px')
-          i #{author}
-        hr
-        ul(style='text-align:left')
-          //outer loop
-          each point in bullets
-            //add icons
-            li= point.content
-              if(point.hasSubpoint == "true")
-                button.drop.invis(type='button')
-                  img(src='./svgs/icons/document-text.svg')
-              if(point.hasSubimg == "true")
-                button.dropimg.invis(type='button')
-                  img(src='./svgs/icons/image.svg')
-              if(point.hasLink == "true")
-                a(href= point.linktext target='_blank')
-                  img.linkbtn(src='./svgs/icons/box-arrow-up-right.svg')
-              //inner loop 1
-              if(point.hasSubpoint == "true")
-                ul.subpt
-                  each subpt1 in point.subpts
-                    li= subpt1.content
-                      //add icons
-                      if(subpt1.hasSubpoint == "true")
-                        button.drop.invis(type='button')
-                          img(src='./svgs/icons/document-text.svg')
-                      if(subpt1.hasSubimg == "true")
-                        button.dropimg.invis(type='button')
-                          img(src='./svgs/icons/image.svg')
-                      if(subpt1.hasLink == "true")
-                        a(href= subpt1.linktext target='_blank')
-                          img.linkbtn(src='./svgs/icons/box-arrow-up-right.svg')
-                      //inner loop 2
-                      if(subpt1.hasSubpoint == "true")
-                        ul.subpt
-                          each subpt2 in subpt1.subpts
-                            li= subpt2.content
-                              //add icons
-                              if(subpt2.hasSubpoint == "true")
-                                button.drop.invis(type='button')
-                                  img(src='./svgs/icons/document-text.svg')
-                              if(subpt2.hasSubimg == "true")
-                                button.dropimg.invis(type='button')
-                                  img(src='./svgs/icons/image.svg')
-                              if(subpt2.hasLink == "true")
-                                a(href= subpt2.linktext target='_blank')
-                                  img.linkbtn(src='./svgs/icons/box-arrow-up-right.svg')
-                              //inner loop 3
-                              if(subpt2.hasSubpoint == "true")
-                                ul.subpt
-                                  each subpt3 in subpt2.subpts
-                                    li= subpt3.content
-                                      //add icons
-                                      if(subpt3.hasSubpoint == "true")
-                                        button.drop.invis(type='button')
-                                          img(src='./svgs/icons/document-text.svg')
-                                      if(subpt3.hasSubimg == "true")
-                                        button.dropimg.invis(type='button')
-                                          img(src='./svgs/icons/image.svg')
-                                      if(subpt3.hasLink == "true")
-                                        a(href= subpt3.linktext target='_blank')
-                                          img.linkbtn(src='./svgs/icons/box-arrow-up-right.svg')
-                                      //inner loop 4
-                                      if(subpt3.hasSubpoint == "true")
-                                        ul.subpt
-                                          each subpt4 in subpt3.subpts
-                                            li= subpt4.content
-                                              //add icons
-                                              if(subpt4.hasSubpoint == "true")
-                                                button.drop.invis(type='button')
-                                                  img(src='./svgs/icons/document-text.svg')
-                                              if(subpt4.hasSubimg == "true")
-                                                button.dropimg.invis(type='button')
-                                                  img(src='./svgs/icons/image.svg')
-                                              if(subpt4.hasLink == "true")
-                                                a(href= subpt4.linktext target='_blank')
-                                                  img.linkbtn(src='./svgs/icons/box-arrow-up-right.svg')
+        if(isEmpty == "false")
+          h2(style='margin-left:24px') #{title}
+          byline(style='margin-left:24px')
+            i #{author}
+          hr
+          ul(style='text-align:left')
+            if(bulletsEmpty == "false")
+              each point in bullets
+                li= point.content
+                  if(point.hasSubpoint == "true")
+                    button.drop.invis(type='button')
+                      img(src='./svgs/icons/document-text.svg')
+                  if(point.hasSubimg == "true")
+                    button.dropimg.invis(type='button')
+                      img(src='./svgs/icons/image.svg')
+                  if(point.hasLink == "true")
+                    a(href= point.linktext target='_blank')
+                      img.linkbtn(src='./svgs/icons/box-arrow-up-right.svg')
+                  //inner loop 1
+                  if(point.hasSubpoint == "true")
+                    ul.subpt
+                      each subpt1 in point.subpts
+                        li= subpt1.content
+                          //add icons
+                          if(subpt1.hasSubpoint == "true")
+                            button.drop.invis(type='button')
+                              img(src='./svgs/icons/document-text.svg')
+                          if(subpt1.hasSubimg == "true")
+                            button.dropimg.invis(type='button')
+                              img(src='./svgs/icons/image.svg')
+                          if(subpt1.hasLink == "true")
+                            a(href= subpt1.linktext target='_blank')
+                              img.linkbtn(src='./svgs/icons/box-arrow-up-right.svg')
+                          //inner loop 2
+                          if(subpt1.hasSubpoint == "true")
+                            ul.subpt
+                              each subpt2 in subpt1.subpts
+                                li= subpt2.content
+                                  //add icons
+                                  if(subpt2.hasSubpoint == "true")
+                                    button.drop.invis(type='button')
+                                      img(src='./svgs/icons/document-text.svg')
+                                  if(subpt2.hasSubimg == "true")
+                                    button.dropimg.invis(type='button')
+                                      img(src='./svgs/icons/image.svg')
+                                  if(subpt2.hasLink == "true")
+                                    a(href= subpt2.linktext target='_blank')
+                                      img.linkbtn(src='./svgs/icons/box-arrow-up-right.svg')
+                                  //inner loop 3
+                                  if(subpt2.hasSubpoint == "true")
+                                    ul.subpt
+                                      each subpt3 in subpt2.subpts
+                                        li= subpt3.content
+                                          //add icons
+                                          if(subpt3.hasSubpoint == "true")
+                                            button.drop.invis(type='button')
+                                              img(src='./svgs/icons/document-text.svg')
+                                          if(subpt3.hasSubimg == "true")
+                                            button.dropimg.invis(type='button')
+                                              img(src='./svgs/icons/image.svg')
+                                          if(subpt3.hasLink == "true")
+                                            a(href= subpt3.linktext target='_blank')
+                                              img.linkbtn(src='./svgs/icons/box-arrow-up-right.svg')
+                                          //inner loop 4
+                                          if(subpt3.hasSubpoint == "true")
+                                            ul.subpt
+                                              each subpt4 in subpt3.subpts
+                                                li= subpt4.content
+                                                  //add icons
+                                                  if(subpt4.hasSubpoint == "true")
+                                                    button.drop.invis(type='button')
+                                                      img(src='./svgs/icons/document-text.svg')
+                                                  if(subpt4.hasSubimg == "true")
+                                                    button.dropimg.invis(type='button')
+                                                      img(src='./svgs/icons/image.svg')
+                                                  if(subpt4.hasLink == "true")
+                                                    a(href= subpt4.linktext target='_blank')
+                                                      img.linkbtn(src='./svgs/icons/box-arrow-up-right.svg')
 
                 
 

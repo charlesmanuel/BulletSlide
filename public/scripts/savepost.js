@@ -76,7 +76,7 @@ $(document).ready(function(){
     var author = $.trim($("#inauthor").html());
     console.log(author);
     var masterarray = {"title": title, "author": author, "listitems":[]};
-    $("li.point").each(function() {
+    $("#myModal").siblings("li.point").each(function() {
       var textfield = $(this).children("textarea:first");
       var content = textfield.val();
       inpoint = new Point(textfield);

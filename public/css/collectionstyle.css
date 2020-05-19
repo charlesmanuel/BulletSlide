@@ -11,6 +11,7 @@
 
 .previewthumb {
   max-height:300px!important;
+  min-height:300px!important;
   overflow:hidden;
   border-width:3px!important;
   min-width:255px!important;
@@ -20,7 +21,7 @@
 
 ul:after {
   content:'';
-  width:80%;
+  width:249px;
   height:297px;
   position:absolute;
   text-align: center;
@@ -106,4 +107,22 @@ nav {
   ul:after {
     display:none;
   }
+}
+
+footer.footer {
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+
+#createNew {
+  padding-top:55px;
+  padding-left:65px;
+}
+
+#createNew img{
+  height:130px;
+}
+
+header li, h6 {
+  word-wrap: break-word;
 }

@@ -23,7 +23,12 @@ textarea {
   padding-left:5px;
 }
 
-.topmenu button, a {
+.topmenu button {
+  padding:9px!important;
+  min-width:140px;
+  margin-right:10px;
+}
+.topmenu a {
   padding:9px!important;
   min-width:140px;
   margin-right:10px;
