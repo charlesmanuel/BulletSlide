@@ -11,6 +11,7 @@ var cookieParser = require('cookie-parser');
 var session = require('express-session');
 const uuid = require('uuid');
 mongoose.connect('mongodb://localhost/my_db');
+var Crypto = require('crypto-js');
 
 
 var Schema = mongoose.Schema;
@@ -21,7 +22,26 @@ var userSchema = new Schema({
     email: String,
     password: String
 });
+
+var bulletSchema = new Schema({
+    type: String,
+    content: String,
+    hasSubpoint: Boolean,
+    hasSubimg: Boolean,
+    hasLink: Boolean,
+    linktext: String,
+    subpts: [this]
+});
+
+var postSchema = new Schema({
+    postID: String,
+    user: String,
+    content: [String, String, bulletSchema]
+});
+
 var User = mongoose.model("User", userSchema);
+var Post = mongoose.model("Post", postSchema);
+
 
 class Point {
     type = "text";
@@ -64,6 +84,7 @@ app.use('/users/:userID/documents/:documentid/', express.static('public'));
 app.set('view engine', 'pug');
 app.set('views', './views');
 var Posts = [];
+var randoms = [];
 app.use(session({secret: "le epic secret"}));
 //session
 app.use(session({secret: "Your secret key"}));
@@ -123,36 +144,47 @@ app.get('/users/:userID/documents', function(req, res){
 });
 
 app.post('/signup', function(req, res){
+    var regex = /[A-Z0-9]/;
     console.log(req.body);
     if(!req.body.inputLast || !req.body.inputFirst || !req.body.inputEmail || !req.body.inputPassword){
         res.render('signup', {message: "Please fill out all fields"});
-    } 
+    }
+    else if (req.body.inputPassword.length < 8 || !regex.test(req.body.inputPassword)){
+        res.render('signup', {message: "password must be at least 8 characters, contain an uppercase and a number"});
+    }
     else {
-        var thisuserID = getRandomInt();
-        var newUser = new User({
-            userID: thisuserID,
-            first: req.body.inputFirst,
-            last: req.body.inputLast,
-            email: req.body.inputEmail,
-            password: req.body.inputPassword
-        });
-        newUser.save(function(err, User){
-            if(err)
-                res.render('signup', {message: "Database error"});
-            else
-                req.session.user = newUser;
-                var newID = getRandomInt().toString();
-                var userID = thisuserID.toString();
-                res.redirect('/users/' + userID + '/documents/' + newID + '/editor');
-        });
+        User.findOne({"email": req.body.inputEmail}, function(err, response){
+            if (err){
+                res.render('signup', {message: "This account already exists!"});
+                return;
+            }
+            if(!response){
+                var thisuserID = getRandomInt();
+                var unhashed = req.body.inputPassword.toString();
+                var hashed = Crypto.SHA256(unhashed).toString();
+                var newUser = new User({
+                    userID: thisuserID,
+                    first: req.body.inputFirst,
+                    last: req.body.inputLast,
+                    email: req.body.inputEmail,
+                    password: hashed
+                });
+                
+                newUser.save(function(err, User){
+                    if(err)
+                        res.render('signup', {message: "Database error"});
+                    else
+                        req.session.user = newUser;
+                        var newID = getRandomInt().toString();
+                        var userID = thisuserID.toString();
+                        res.redirect('/users/' + userID + '/documents/' + newID + '/editor');
+                });
+            }
+            else{
+                res.render('signup', {message: "This account already exists!"});
+            }
 
-        /* var thisuserID = getRandomInt();
-        var newUser = {userID: thisuserID, first: req.body.inputFirst, last: req.body.inputLast, email: req.body.inputEmail, password: req.body.inputPassword};
-        Users.push(newUser);
-        req.session.user = newUser;
-        var newID = getRandomInt().toString();
-        var userID = thisuserID.toString();
-        res.redirect('/users/' + userID + '/documents/' + newID + '/editor'); */
+        });
     }
 });
 
@@ -161,7 +193,9 @@ app.post('/login', function(req, res){
         res.render('login', {message: "Please enter both id and password"});
     } 
     else {
-        User.findOne({email: req.body.inputEmail, password: req.body.inputPassword}, "userID", function(err, response){
+        var unhashed = req.body.inputPassword.toString();
+        var hashed = Crypto.SHA256(unhashed).toString();
+        User.findOne({email: req.body.inputEmail, password: hashed}, "userID", function(err, response){
             if(!response) {
                 res.render('login', {message: "incorrect username or password"});
                 return;
@@ -212,8 +246,6 @@ app.post('/users/:userID/documents/:documentid/editor/save', function(req, res){
     console.log(docID);
     var userID = req.params.userID;
     console.log(userID);
-    var user = req.session.user.email;
-    console.log(user);
     var postcontent = req.body;
     var newpost = {user: userID, postID: docID, content: postcontent};
     var found = Posts.find(element => element.postID == docID && element.user == userID);
