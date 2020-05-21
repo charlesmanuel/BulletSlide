@@ -22,13 +22,16 @@ nav.navbar.bg-white.border-bottom.border-dark.static-top(style='border-width:3px
       img(style='height:60px;margin-top:-3px; padding-right:10px;vertical-align:center;' src='./img/bullet.png')
       | BulletSlides
     div
-      a.btn.btn-primary(href='../') Library
-      a.btn.btn-danger(href='/logout') Log Out
+      if(owner)
+        a.btn.btn-primary(href='./editor' style="margin-right:40px") Edit
+        a.btn.btn-primary(href='../') Library
+        a.btn.btn-danger(href='/logout') Log Out
+      else
+        a.btn.btn-primary(href='/login') Log In
+        a.btn.btn-primary(href='/signup') Sign Up
 header.masthead
   .container(style='margin-top:-80px')
     .row
-      .col-xl-7.mx-auto.topmenu(style='margin-bottom:10px; padding-left:5px!important')
-          a#present.btn.btn-danger(href='./editor') Edit
       .col-xl-7.bg-white.mx-auto.border.border-dark.rounded(style='padding:40px 30px 30px; background-color:white!important; border-width:3px!important; margin-bottom:1000px!important')
         if(isEmpty == "false")
           h2(style='margin-left:24px') #{title}
@@ -108,8 +111,34 @@ header.masthead
                                                   if(subpt4.hasLink == "true")
                                                     a(href= subpt4.linktext target='_blank')
                                                       img.linkbtn(src='./svgs/icons/box-arrow-up-right.svg')
-
-                
+footer.footer
+  .container
+    .row
+      .col-lg-6.h-100.text-center.text-lg-left.my-auto
+        ul.list-inline.mb-2
+          li.list-inline-item
+            a(href='#') About
+          li.list-inline-item &sdot;
+          li.list-inline-item
+            a(href='#') Contact
+          li.list-inline-item &sdot;
+          li.list-inline-item
+            a(href='#') Terms of Use
+          li.list-inline-item &sdot;
+          li.list-inline-item
+            a(href='#') Privacy Policy
+        p.small.mb-4.mb-lg-0 &copy; BulletSlides 2020. All Rights Reserved.
+      .col-lg-6.h-100.text-center.text-lg-right.my-auto
+        ul.list-inline.mb-0
+          li.list-inline-item.mr-3
+            a(href='#')
+              i.fab.fa-facebook.fa-2x.fa-fw
+          li.list-inline-item.mr-3
+            a(href='#')
+              i.fab.fa-twitter-square.fa-2x.fa-fw
+          li.list-inline-item
+            a(href='#')
+              i.fab.fa-instagram.fa-2x.fa-fw
 
 
   link(href='./css/style2.css' rel='stylesheet')

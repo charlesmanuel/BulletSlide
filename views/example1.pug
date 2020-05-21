@@ -1,0 +1,126 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+  meta(name='description' content='')
+  meta(name='author' content='Amory Manuel')
+  title Article Bullet
+  // Bootstrap core CSS
+  link(href='./vendor/bootstrap/css/bootstrap.css' rel='stylesheet')
+  // Custom fonts for this template
+  link(href='./vendor/fontawesome-free/css/all.min.css' rel='stylesheet')
+  link(href='./vendor/simple-line-icons/css/simple-line-icons.css' rel='stylesheet' type='text/css')
+  link(href='https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic' rel='stylesheet' type='text/css')
+  script(type='text/javascript' src='./scripts/scripts.js')
+  // Custom styles for this template
+  link(href='./css/landing-page.css' rel='stylesheet')
+  link(href='./css/style2.css' rel='stylesheet')
+// Navigation
+nav.navbar.bg-white.border-bottom.border-dark.static-top(style='border-width:3px!important;')
+  .container.container3
+    a.navbar-brand(style='color:#000000!important' href='/')
+      img(style='height:60px;margin-top:-3px; padding-right:10px;vertical-align:center;' src='./img/bullet.png')
+      | BulletSlides
+    div
+      if(isSigned)
+        a.btn.btn-primary(href='/users/' + isSigned + '/documents') Library
+        a.btn.btn-danger(href='/logout') Log Out
+      else
+        a.btn.btn-primary(href='/login') Log In
+        a.btn.btn-primary(href='/signup') Sign Up
+header.masthead
+  .container(style='margin-top:-80px')
+    .row
+      .col-xl-7.bg-white.mx-auto.border.border-dark.rounded(style='padding:40px 30px 30px; background-color:white!important; border-width:3px!important')
+        h2(style='margin-left:24px') RIP Spitzer: NASA bids an emotional farewell to its infrared space telescope
+        byline(style='margin-left:24px')
+          i by Jonathan Chadwick
+          |  &mdash; 
+          a(href='https://www.dailymail.co.uk/sciencetech/article-7952023/NASA-turns-Spitzer-space-telescope-16-years-service.html') The Daily Mail
+        hr
+        ul(style='text-align:left')
+          li
+            | NASA scientists have declared the mission of the Spitzer space telescope over after 16 years of service 
+            button#drop1.drop.invis(type='button')
+              img#img1(src='./svgs/icons/document-text.svg')
+            button.droptweet.invis(type='button')
+              img.twiticon(src='./img/twitter.svg')
+            ul#ul1.subpt
+              li
+                | NASA mission control downloaded the last Spitzer data and sent through a command to enter safe mode on Thursday, ceasing all scientific operations.
+              li
+                | At 2:34 pm PST (10:24pm GMT) on Thursday, Spitzer Project Manager Joseph Hunt declared the spacecraft officially decommissioned, bringing its mission to an end.
+              li
+                | The telescope, which focused on capturing infrared images, launched in 2003 and was operational for 16-and-a-half years, despite only being planned to serve for five.
+            .subtweet
+              blockquote.twitter-tweet(data-cards='hidden')
+                p(lang='en' dir='ltr')
+                  | At 2:34 pm PST on Jan. 30, 2020, Spitzer Project Manager Joseph Hunt declared the Spitzer spacecraft decommissioned. 
+                  br
+                  br
+                  | Farewell, Spitzer. Thank you for the great science. &#x1F44B;
+                  a(href='https://twitter.com/hashtag/SpitzerFinalVoyage?src=hash&ref_src=twsrc%5Etfw') #SpitzerFinalVoyage
+                  a(href='https://t.co/o1J0vNp2dt') https://t.co/o1J0vNp2dt
+                | &mdash; NASA Spitzer (@NASAspitzer) 
+                a(href='https://twitter.com/NASAspitzer/status/1223023276986789888?ref_src=twsrc%5Etfw') January 30, 2020
+              script(async='' src='https://platform.twitter.com/widgets.js' charset='utf-8')
+          li
+            | The legendary infrared space telescope was placed in safe mode on Thursday, ceasing all science operations
+          li
+            | Since its launch in 2003 it discovered Saturn&apos;s largest ring and discovered  planets beyond our Solar System
+            button#drop2.drop.invis(type='button')
+              img#img1(src='./svgs/icons/document-text.svg')
+            button#dropimg.dropimg.invis(type='button')
+              img#img4(src='./svgs/icons/image.svg')
+            a(href='https://science.nasa.gov/science-news/science-at-nasa/2009/07oct_giantring' target='_blank')
+              img.linkbtn(src='./svgs/icons/box-arrow-up-right.svg')
+            #subimg1.subimg
+              br
+              img.centerimg(src='./img/spitzer.jpeg')
+              br
+            ul#ul2.subpt
+              li
+                | The spacecraft&apos;s most memorable achievements include the discovery of Saturn&apos;s largest ring and four TRAPPIST-1 exoplanets, as well as mapping the extensive portraits of the Milky Way.&nbsp;Among its contributions over 16 years, Spitzer studied comets and asteroids in our Solar System and found a previously unidentified ring around Saturn in 2009 &ndash; the planet&apos;s largest.
+          li
+            | Spitzer was one of four Great Observatories telescopes released between 1990-2003 to study the universe in by capturing different waves of light 
+            button#drop1.drop.invis(type='button')
+              img#img4(src='./svgs/icons/document-text.svg')
+            ul#ul4.subpt
+              li
+                | The Great Observatories program demonstrated the power of using different wavelengths of light to create a fuller picture of the universe, NASA said.
+              li
+                | Satellite light readings can allow scientists to discern the mass and size of stars in other galaxies and their planets that pass in front of them.
+footer.footer
+  .container
+    .row
+      .col-lg-6.h-100.text-center.text-lg-left.my-auto
+        ul.list-inline.mb-2
+          li.list-inline-item
+            a(href='#') About
+          li.list-inline-item &sdot;
+          li.list-inline-item
+            a(href='#') Contact
+          li.list-inline-item &sdot;
+          li.list-inline-item
+            a(href='#') Terms of Use
+          li.list-inline-item &sdot;
+          li.list-inline-item
+            a(href='#') Privacy Policy
+        p.small.mb-4.mb-lg-0 &copy; BulletSlides 2020. All Rights Reserved.
+      .col-lg-6.h-100.text-center.text-lg-right.my-auto
+        ul.list-inline.mb-0
+          li.list-inline-item.mr-3
+            a(href='#')
+              i.fab.fa-facebook.fa-2x.fa-fw
+          li.list-inline-item.mr-3
+            a(href='#')
+              i.fab.fa-twitter-square.fa-2x.fa-fw
+          li.list-inline-item
+            a(href='#')
+              i.fab.fa-instagram.fa-2x.fa-fw
+// Masthead
+// Footer
+// Bootstrap core JavaScript
+script(src='./vendor/jquery/jquery.min.js')
+script(src='./vendor/bootstrap/js/bootstrap.bundle.min.js')
+script(type='text/javascript' src='./scripts/dropdown.js')

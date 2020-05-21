@@ -40,8 +40,12 @@ nav.navbar.bg-white.border-bottom.border-dark.static-top(style='border-width:3px
       img(style='height:60px;margin-top:-3px; padding-right:10px;vertical-align:center;' src='./img/bullet.png')
       | BulletSlides
     div
-      a.btn.btn-primary(href='/login') Log In
-      a.btn.btn-primary(href='/signup') Sign Up
+      if(isSigned)
+        a.btn.btn-primary(href='./users/' + isSigned + '/documents') Library
+        a.btn.btn-danger(href='/logout') Log Out
+      else
+        a.btn.btn-primary(href='/login') Log In
+        a.btn.btn-primary(href='/signup') Sign Up
 // Masthead
 header.masthead.text-white.text-center(style='padding-bottom:0px!important;padding-top:8rem!important')
   .overlay
@@ -95,6 +99,7 @@ header.masthead.text-white.text-center(style='padding-bottom:0px!important;paddi
                 | &mdash; NASA Spitzer (@NASAspitzer) 
                 a(href='https://twitter.com/NASAspitzer/status/1223023276986789888?ref_src=twsrc%5Etfw') January 30, 2020
               script(async='' src='https://platform.twitter.com/widgets.js' charset='utf-8')
+
           li
             span#highlight3
               | Since its launch in 2003 it discovered Saturn&apos;s largest ring and discovered  planets beyond our Solar System

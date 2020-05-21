@@ -1,0 +1,132 @@
+doctype html
+head
+  meta(charset='utf-8')
+  meta(name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no')
+  meta(name='description' content='')
+  meta(name='author' content='Amory Manuel')
+  title Article Bullet
+  // Bootstrap core CSS
+  link(href='./vendor/bootstrap/css/bootstrap.css' rel='stylesheet')
+  // Custom fonts for this template
+  link(href='./vendor/fontawesome-free/css/all.min.css' rel='stylesheet')
+  link(href='./vendor/simple-line-icons/css/simple-line-icons.css' rel='stylesheet' type='text/css')
+  link(href='https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic' rel='stylesheet' type='text/css')
+  script(type='text/javascript' src='./scripts/scripts.js')
+  // Custom styles for this template
+  link(href='./css/landing-page.css' rel='stylesheet')
+  link(href='./css/style2.css' rel='stylesheet')
+// Navigation
+nav.navbar.bg-white.border-bottom.border-dark.static-top(style='border-width:3px!important;')
+  .container.container3
+    a.navbar-brand(style='color:#000000!important' href='/')
+      img(style='height:60px;margin-top:-3px; padding-right:10px;vertical-align:center;' src='./img/bullet.png')
+      | BulletSlides
+    div
+      if(isSigned)
+        a.btn.btn-primary(href='/users/' + isSigned + '/documents') Library
+        a.btn.btn-danger(href='/logout') Log Out
+      else
+        a.btn.btn-primary(href='/login') Log In
+        a.btn.btn-primary(href='/signup') Sign Up
+header.masthead
+  .container(style='margin-top:-80px')
+    .row
+      .col-xl-7.bg-white.mx-auto.border.border-dark.rounded(style='padding:40px 30px 30px; background-color:white!important; border-width:3px!important; margin-bottom:400px!important')
+        h2(style='margin-left:24px')
+          | &apos;It&apos;s a lie to the American people&apos; Democrats complain that Facebook and Twitter won&apos;t take down faked video
+        byline(style='margin-left:24px')
+          i by Ariel Zilber
+          |  &mdash; 
+          a(href='https://www.dailymail.co.uk/news/article-7981821/Democrats-outraged-Facebook-Twitter-refuse-remove-doctored-video-posted-Trump.html') The Daily Mail
+        hr
+        ul(style='text-align:left')
+          li
+            | President Trump on Thursday posted a doctored video clip titled &lsquo;Powerful American stories ripped to shreds by Nancy Pelosi
+            button.droptweet.invis(type='button')
+              img.twiticon(src='./img/twitter.svg')
+            .subtweet
+              blockquote.twitter-tweet(data-cards="hidden")
+                p(lang='und' dir='ltr')
+                  a(href='https://t.co/QhTWvcY4Ke') pic.twitter.com/QhTWvcY4Ke
+                | &mdash; Donald J. Trump (@realDonaldTrump) 
+                a(href='https://twitter.com/realDonaldTrump/status/1225553117929988097?ref_src=twsrc%5Etfw') February 6, 2020
+              script(async='' src='https://platform.twitter.com/widgets.js' charset='utf-8')
+          li
+            | The spliced clip makes it appear as if Pelosi tore up Trump&apos;s State of the Union speech as the president paid tribute to Charles McGee 
+            button.drop.invis(type='button')
+              img(src='./svgs/icons/document-text.svg')
+            button#dropimg.dropimg.invis(type='button')
+              img(src='./svgs/icons/image.svg')
+            .subimg
+              br
+              img.centerimg(src='./img/mcgee.jpeg')
+              br
+            ul.subpt
+              li
+                | McGee, 100, is one of the last surviving members of the Tuskegee Airmen. He was honored by the president for flying more than 135 combat missions over Europe during the Second World War.
+          li
+            | The doctored clip posted by Trump has generated millions of views on the president&apos;s social media pages on Twitter and Facebook
+          li
+            | Democratic members of Congress and Pelosi aides were outraged after Facebook and Twitter declined to remove the clip
+            button#drop1.drop.invis(type='button')
+              img#img4(src='./svgs/icons/document-text.svg')
+            ul#ul4.subpt
+              li
+                | Under its current rules, the micro-blogging site will not remove the video posted by Trump since it does not violate its old policy
+                ul.subsubpt
+                  li
+                    | Twitter announced on Tuesday that the site would institute new rules on manipulated media, saying: &lsquo;You may not deceptively share synthetic or manipulated media that are likely to cause harm.
+                  li
+                    | Twitter has vowed to examine videos to see &lsquo;whether the content has been substantially edited in a manner that fundamentally alters its composition, sequence, timing or framing&rsquo; as well as looking at &lsquo;any visual or auditory information (such as new video frames, overdubbed audio or modified subtitles) that has been added or removed.&rsquo;
+            .subtweet
+              blockquote.twitter-tweet(data-cards="hidden")
+                p(lang='en' dir='ltr')
+                  | This video is doctored. It has been up, and pinned to the President&apos;s page, for nearly a day.
+                  br
+                  br
+                  | Trump posted it to deceive Americans about 
+                  a(href='https://twitter.com/SpeakerPelosi?ref_src=twsrc%5Etfw') @SpeakerPelosi
+                  | &apos;s actions and record.
+                  br
+                  br
+                  | If I posted a doctored video it would be a clear violation House Rules.
+                  a(href='https://twitter.com/Twitter?ref_src=twsrc%5Etfw') @Twitter
+                  |  should take this down. 
+                  a(href='https://t.co/zTc2OHntQ5') https://t.co/zTc2OHntQ5
+                | &mdash; Rep. Don Beyer (@RepDonBeyer) 
+                a(href='https://twitter.com/RepDonBeyer/status/1225816845598547971?ref_src=twsrc%5Etfw') February 7, 2020
+              script(async='' src='https://platform.twitter.com/widgets.js' charset='utf-8')
+footer.footer
+  .container
+    .row
+      .col-lg-6.h-100.text-center.text-lg-left.my-auto
+        ul.list-inline.mb-2
+          li.list-inline-item
+            a(href='#') About
+          li.list-inline-item &sdot;
+          li.list-inline-item
+            a(href='#') Contact
+          li.list-inline-item &sdot;
+          li.list-inline-item
+            a(href='#') Terms of Use
+          li.list-inline-item &sdot;
+          li.list-inline-item
+            a(href='#') Privacy Policy
+        p.small.mb-4.mb-lg-0 &copy; BulletSlides 2020. All Rights Reserved.
+      .col-lg-6.h-100.text-center.text-lg-right.my-auto
+        ul.list-inline.mb-0
+          li.list-inline-item.mr-3
+            a(href='#')
+              i.fab.fa-facebook.fa-2x.fa-fw
+          li.list-inline-item.mr-3
+            a(href='#')
+              i.fab.fa-twitter-square.fa-2x.fa-fw
+          li.list-inline-item
+            a(href='#')
+              i.fab.fa-instagram.fa-2x.fa-fw
+// Masthead
+// Footer
+// Bootstrap core JavaScript
+script(src='./vendor/jquery/jquery.min.js')
+script(src='./vendor/bootstrap/js/bootstrap.bundle.min.js')
+script(type='text/javascript' src='./scripts/dropdown.js')

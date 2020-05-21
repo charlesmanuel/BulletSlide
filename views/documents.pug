@@ -35,7 +35,7 @@ nav.navbar.bg-white.border-bottom.border-dark.static-top(style='border-width:3px
             br
           if(empty == "false")
             each post in posts
-              a.col-md-4.mx-auto.my-auto.prevThumb(href='./' + post.postID + '/editor')
+              a.col-md-4.mx-auto.my-auto.prevThumb(href='/users/' + userID + '/documents/' + post.postID + '/editor')
                 .previewthumb.border.bg-white.border-dark.rounded.pr-3.pt-4
                   h6(style='margin-left:30px')= post.content.title
                   byline.prevbyline

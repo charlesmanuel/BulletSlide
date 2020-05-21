@@ -126,6 +126,32 @@ $(document).ready(function(){
 
   });
 
+  $('#share').click(function(){
+    var checkURL = window.location.href;
+    var checkURL2 = checkURL.split("#");
+    var checkURL3 = checkURL2[0];
+    var checkURL4 = checkURL3.split("editor");
+    var checkURL5 = checkURL4[0];
+    var theURL = checkURL5 + 'preview';
+    $("#shareURL").val(theURL);
+    $("#shareModal").css("display", "block");
+    $("#shareURL").select();
+  });
+
+  $('#cancelShare').click(function(){
+    $("#shareModal").css("display", "none");
+  });
+  $('#submitShare').click(function(){
+    var checkURL = window.location.href;
+    var checkURL2 = checkURL.split("#");
+    var checkURL3 = checkURL2[0];
+    var checkURL4 = checkURL3.split("editor");
+    var checkURL5 = checkURL4[0];
+    var theURL = checkURL5 + 'share';
+    $("#shareModal").css("display", "none");
+    $.post(theURL);
+  });
+
   //gets rid of img/text icon from parent textbox if there are no more matching items below
   function minusCheck(type, par){
 

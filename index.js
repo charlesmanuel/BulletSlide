@@ -27,6 +27,7 @@ var userSchema = new Schema({
 var postSchema = new Schema({
     postID: String,
     user: String,
+    shared: {type: Boolean, default: false},
     content: {
         title: String,
         author: String,
@@ -82,7 +83,6 @@ var Posts = [];
 var randoms = [];
 app.use(session({secret: "le epic secret"}));
 //session
-app.use(session({secret: "Your secret key"}));
 // End setup
 
 
@@ -90,14 +90,23 @@ function getRandomInt() {
     return Math.floor(Math.random() * Math.floor(100000000));
 }
 
+function isSignedIn(inputuser){
+    if (inputuser == undefined){
+        return 0;
+    }
+    else {
+        return inputuser.userID;
+    }
+}
+
 
 //Begin handling routes
 app.get('/', function(req, res){
-    res.render('index');
+    res.render('index', {isSigned: isSignedIn(req.session.user)});
 });
 
 app.get('/examplelibrary', function(req, res){
-    res.render('examplelibrary');
+    res.render('examplelibrary', {isSigned: isSignedIn(req.session.user)});
 });
 
 app.get('/signup', function(req, res){
@@ -110,25 +119,44 @@ app.get('/login', function(req, res){
 
 app.get('/logout', function(req, res){
     req.session.destroy(function(){
-        console.log("user logged out.")
+        //console.log("user logged out.")
     });
     res.redirect('/login');
 });
 
+app.get('/example1', function(req, res){
+    res.render('example1', {isSigned: isSignedIn(req.session.user)});
+});
 
-function checkSignIn(req, res, next){
-    if(req.session.user){
+app.get('/example2', function(req, res){
+    res.render('example2', {isSigned: isSignedIn(req.session.user)});
+});
+
+app.get('/example3', function(req, res){
+    res.render('example3', {isSigned: isSignedIn(req.session.user)});
+});
+
+
+/* function checkSignIn(req, res, next){
+    if(req.session.user.userID == req.params.userID){
         next();     //If session exists, proceed to page
-    } 
-    else {
-        var err = new Error("Not logged in!");
-        console.log(req.session.user);
-        next(err);  //Error, trying to access unauthorized page!
     }
-}
+    else {
+        res.status(403);
+        res.render("forbidden");
+        return;
+    }
+} */
+
+
 
 app.get('/users/:userID/documents', function(req, res){
     var userID = req.params.userID;
+    if (!req.session.user || (req.session.user.userID != userID)){
+        res.status(403);
+        res.render("forbidden");
+        return;
+    }
     Post.find({user: userID}, function(err, response){
         var userposts = response;
         var isEmpty = "true";
@@ -142,7 +170,7 @@ app.get('/users/:userID/documents', function(req, res){
 
 app.post('/signup', function(req, res){
     var regex = /[A-Z0-9]/;
-    console.log(req.body);
+    //console.log(req.body);
     if(!req.body.inputLast || !req.body.inputFirst || !req.body.inputEmail || !req.body.inputPassword){
         res.render('signup', {message: "Please fill out all fields"});
     }
@@ -198,6 +226,7 @@ app.post('/login', function(req, res){
                 return;
             }
             else {
+                req.session.user = response;
                 var theuser = response.userID;
                 var theurl = '/users/' + theuser + '/documents/';
                 res.redirect(theurl);
@@ -208,19 +237,16 @@ app.post('/login', function(req, res){
 });
 
 
-function checkSignIn(req, res){
-    if(req.session.user){
-       next();     //If session exists, proceed to page
-    } else {
-       var err = new Error("Not logged in!");
-       console.log(req.session.user);
-       next(err);  //Error, trying to access unauthorized page!
-    }
-}
-
 app.get('/users/:userID/documents/:documentid/editor', function(req, res){
     var docID = req.params.documentid;
     var userID = req.params.userID;
+
+    if (!req.session.user || (req.session.user.userID != userID)){
+        res.status(403);
+        res.render("forbidden");
+        return;
+    }
+
     Post.findOne({postID: docID, user: userID}, function(err, response){
         var found = response;
         if (found && found.content.listitems != null) {
@@ -242,9 +268,9 @@ app.get('/users/:userID/documents/:documentid/editor', function(req, res){
 
 app.post('/users/:userID/documents/:documentid/editor/save', function(req, res){
     var docID = req.params.documentid;
-    console.log(docID);
+    //console.log(docID);
     var userID = req.params.userID;
-    console.log(userID);
+    //console.log(userID);
     var postcontent = req.body;
     var intitle = req.body.title;
     var inauthor = req.body.author;
@@ -264,45 +290,61 @@ app.post('/users/:userID/documents/:documentid/editor/save', function(req, res){
         {upsert: true},
         function(err, Post){
     });
-
-
-
-    /* var found = Posts.find(element => element.postID == docID && element.user == userID);
-    if (found) {
-        var index = Posts.indexOf(found);
-        if (index > -1){
-            Posts.splice(index, 1);
-        }
-    }
-    Posts.push(newpost);
-    console.log(Posts);
-    console.log(newpost.content); */
 });
 
 
 app.get('/users/:userID/documents/:documentid/preview', function(req, res){
     var postID = req.params.documentid;
     var userID = req.params.userID;
+    var isOwner = true;
+    if (!req.session.user || (req.session.user.userID != userID)){
+        isOwner = false;
+        //console.log("isOwner is false for this page");
+    }
     Post.findOne({postID: postID, user: userID}, function(err, response){
-        var found = response;    
-        if (found != null && found.content.listitems != null) {
+        var found = response;
+        if ((!req.session.user || (req.session.user.userID != userID)) && (!found.shared)){
+            res.status(403);
+            res.render("forbidden");
+            return;
+        }
+        else if (found != null && found.content.listitems != null) {
             var posttitle = found.content.title;
             var postauthor = found.content.author;
             var postbullets = found.content.listitems;
-            res.render('preview', {title: posttitle, author: postauthor, bullets: postbullets, isEmpty: "false", bulletsEmpty: "false"});
+            res.render('preview', {title: posttitle, author: postauthor, bullets: postbullets, isEmpty: "false", bulletsEmpty: "false", owner: isOwner});
         }
         else if(found != null && found.content.listitems == null){
             var posttitle = found.content.title;
             var postauthor = found.content.author;
-            res.render('preview', {title: posttitle, author: postauthor, isEmpty: "false", bulletsEmpty: "true"})
+            res.render('preview', {title: posttitle, author: postauthor, isEmpty: "false", bulletsEmpty: "true", owner: isOwner})
         }
         else if (found == null){
-            res.status(404).send("404 Not found!");
+            res.status(404).render("404");
         }
         else {
-            res.render('preview', {isEmpty: "true", bulletsEmpty: "true"});
+            res.render('preview', {isEmpty: "true", bulletsEmpty: "true", owner: isOwner});
         }
     });
+});
+
+app.post('/users/:userID/documents/:documentid/share', function(req, res){
+    var docID = req.params.documentid;
+    var userID = req.params.userID;
+    //console.log("share post successfully clicked");
+    Post.updateOne(
+        {user: userID, postID: docID},
+        {$set: {shared: true}},
+        function(err, Post){
+
+        }
+    );
+});
+
+
+app.get('*', (req, res) => {
+    res.status(404);
+    res.render("404");
 });
 
 

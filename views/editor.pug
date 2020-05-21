@@ -21,6 +21,7 @@ head
   script(src='./scripts/angular.min.js')
   script(src='./scripts/editor.js')
   script(src='./scripts/savepost.js')
+  //script(src="dist/clipboard.min.js")
 // Navigation
 nav.navbar.bg-white.border-bottom.border-dark.static-top(style='border-width:3px!important;')
   .container.container3
@@ -209,6 +210,7 @@ if(found == "true")
         .col-xl-7.mx-auto.topmenu
           button#savepreview.btn.btn-primary Save
           a#present.btn.btn-primary(href='./preview') Present
+          button#share.btn.btn-primary Share
         #focused.col-xl-7.bg-white.mx-auto.border.border-dark.rounded.bulletpage(contenteditable='true')
           h2#intitle.test(style='margin-left:24px' placeholder='Title') #{title}
           p#inauthor.test(style='margin-left:24px' placeholder='Your Name') #{author}
@@ -223,6 +225,13 @@ if(found == "true")
                   .buttonz
                     button#submitlink.btn.btn-primary Save
                     button#cancellink.btn.btn-secondary Cancel
+              #shareModal.modal
+                .modal-content
+                  label(for='shareURL') Anyone with this link will be able to view. Copy then click Done to grant access. 
+                  input#shareURL(type='text' name='inputURL' style="margin-bottom: 10px")
+                  .buttonz
+                    button#submitShare.btn.btn-primary Done
+                    button#cancelShare.btn.btn-secondary Cancel
               li#secretpt
                 textarea.test2(data-icons='0' rows='1')
                 a.URLtext(href='#')

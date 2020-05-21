@@ -72,9 +72,9 @@ $(document).ready(function(){
 
   $("#savepreview").click(function(){
     var title = $.trim($("#intitle").html());
-    console.log(title);
+    //console.log(title);
     var author = $.trim($("#inauthor").html());
-    console.log(author);
+    //console.log(author);
     var masterarray = {"title": title, "author": author, "listitems":[]};
     $("#myModal").siblings("li.point").each(function() {
       var textfield = $(this).children("textarea:first");
@@ -92,10 +92,10 @@ $(document).ready(function(){
     var checkURL3 = checkURL2[0];
     var theURL = checkURL3 + '/save';
 
-    console.log(theURL);
-    console.log(window.location.href);
+    //console.log(theURL);
+    //console.log(window.location.href);
     $.post(theURL, masterarray);
-    console.log(inputdata);
-    console.log(masterarray);
+    //console.log(inputdata);
+    //console.log(masterarray);
   });
 });

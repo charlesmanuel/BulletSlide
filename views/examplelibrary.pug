@@ -21,7 +21,13 @@ nav.navbar.bg-white.border-bottom.border-dark.static-top(style='border-width:3px
     a.navbar-brand(style='color:#000000 !important' href='./')
       img(style='height:60px;margin-top:-3px; padding-right:10px;vertical-align:center;' src='/img/bullet.png')
       | BulletSlides
-    a.btn.btn-primary(href='/login') Sign In
+    div
+      if(isSigned)
+        a.btn.btn-primary(href='/users/' + isSigned + '/documents') Library
+        a.btn.btn-danger(href='/logout') Log Out
+      else
+        a.btn.btn-primary(href='/login') Log In
+        a.btn.btn-primary(href='/signup') Sign Up
 .masthead2(style="padding-bottom:300px!important")
   .container
     .row
