@@ -23,20 +23,15 @@ var userSchema = new Schema({
     password: String
 });
 
-var bulletSchema = new Schema({
-    type: String,
-    content: String,
-    hasSubpoint: Boolean,
-    hasSubimg: Boolean,
-    hasLink: Boolean,
-    linktext: String,
-    subpts: [this]
-});
 
 var postSchema = new Schema({
     postID: String,
     user: String,
-    content: [String, String, bulletSchema]
+    content: {
+        title: String,
+        author: String,
+        listitems: Object
+    }
 });
 
 var User = mongoose.model("User", userSchema);
@@ -134,13 +129,15 @@ function checkSignIn(req, res, next){
 
 app.get('/users/:userID/documents', function(req, res){
     var userID = req.params.userID;
-    var userposts = Posts.filter(post => post.user == userID);
-    var isEmpty = "true";
-    if (userposts.length){
-        isEmpty = "false";
-    }
-    var newID = getRandomInt().toString();
-    res.render('documents', {userID: userID, posts: userposts, empty: isEmpty, newID: newID});
+    Post.find({user: userID}, function(err, response){
+        var userposts = response;
+        var isEmpty = "true";
+        if (userposts.length){
+            isEmpty = "false";
+        }
+        var newID = getRandomInt().toString();
+        res.render('documents', {userID: userID, posts: userposts, empty: isEmpty, newID: newID});
+    });
 });
 
 app.post('/signup', function(req, res){
@@ -224,21 +221,23 @@ function checkSignIn(req, res){
 app.get('/users/:userID/documents/:documentid/editor', function(req, res){
     var docID = req.params.documentid;
     var userID = req.params.userID;
-    var found = Posts.find(element => element.postID == docID && element.user == userID);
-    if (found && found.content.listitems != undefined) {
-        var posttitle = found.content.title;
-        var postauthor = found.content.author;
-        var postbullets = found.content.listitems;
-        res.render('editor', {found: "true", bulletsEmpty: "false", title: posttitle, author: postauthor, bullets: postbullets});
-    }
-    else if (found && found.content.listitems == undefined){
-        var posttitle = found.content.title;
-        var postauthor = found.content.author;
-        res.render('editor', {found: "true", bulletsEmpty: "true", title: posttitle, author: postauthor});
-    }
-    else {
-        res.render('editor', {found: "false"});
-    }
+    Post.findOne({postID: docID, user: userID}, function(err, response){
+        var found = response;
+        if (found && found.content.listitems != null) {
+            var posttitle = found.content.title;
+            var postauthor = found.content.author;
+            var postbullets = found.content.listitems;
+            res.render('editor', {found: "true", bulletsEmpty: "false", title: posttitle, author: postauthor, bullets: postbullets});
+        }
+        else if (found && found.content.listitems == null){
+            var posttitle = found.content.title;
+            var postauthor = found.content.author;
+            res.render('editor', {found: "true", bulletsEmpty: "true", title: posttitle, author: postauthor});
+        }
+        else {
+            res.render('editor', {found: "false"});
+        }
+    });
 });
 
 app.post('/users/:userID/documents/:documentid/editor/save', function(req, res){
@@ -247,8 +246,28 @@ app.post('/users/:userID/documents/:documentid/editor/save', function(req, res){
     var userID = req.params.userID;
     console.log(userID);
     var postcontent = req.body;
-    var newpost = {user: userID, postID: docID, content: postcontent};
-    var found = Posts.find(element => element.postID == docID && element.user == userID);
+    var intitle = req.body.title;
+    var inauthor = req.body.author;
+    var inlist = req.body.listitems;
+    var newpost = new Post({
+        postID: docID,
+        userID: userID,
+        content: {
+            title: intitle,
+            author: inauthor,
+            listitems: inlist
+        }
+    });
+    Post.updateOne(
+        {user: userID, postID: docID},
+        {$set: {content: {title: intitle, author: inauthor, listitems: inlist}}},
+        {upsert: true},
+        function(err, Post){
+    });
+
+
+
+    /* var found = Posts.find(element => element.postID == docID && element.user == userID);
     if (found) {
         var index = Posts.indexOf(found);
         if (index > -1){
@@ -257,28 +276,33 @@ app.post('/users/:userID/documents/:documentid/editor/save', function(req, res){
     }
     Posts.push(newpost);
     console.log(Posts);
-    console.log(newpost.content);
+    console.log(newpost.content); */
 });
 
 
 app.get('/users/:userID/documents/:documentid/preview', function(req, res){
     var postID = req.params.documentid;
     var userID = req.params.userID;
-    const found = Posts.find(element => element.postID == postID);
-    if (found != undefined && found.content.listitems != undefined) {
-        var posttitle = found.content.title;
-        var postauthor = found.content.author;
-        var postbullets = found.content.listitems;
-        res.render('preview', {title: posttitle, author: postauthor, bullets: postbullets, isEmpty: "false", bulletsEmpty: "false"});
-    }
-    else if(found != undefined && found.content.listitems == undefined){
-        var posttitle = found.content.title;
-        var postauthor = found.content.author;
-        res.render('preview', {title: posttitle, author: postauthor, isEmpty: "false", bulletsEmpty: "true"})
-    }
-    else {
-        res.render('preview', {isEmpty: "true", bulletsEmpty: "true"});
-    }
+    Post.findOne({postID: postID, user: userID}, function(err, response){
+        var found = response;    
+        if (found != null && found.content.listitems != null) {
+            var posttitle = found.content.title;
+            var postauthor = found.content.author;
+            var postbullets = found.content.listitems;
+            res.render('preview', {title: posttitle, author: postauthor, bullets: postbullets, isEmpty: "false", bulletsEmpty: "false"});
+        }
+        else if(found != null && found.content.listitems == null){
+            var posttitle = found.content.title;
+            var postauthor = found.content.author;
+            res.render('preview', {title: posttitle, author: postauthor, isEmpty: "false", bulletsEmpty: "true"})
+        }
+        else if (found == null){
+            res.status(404).send("404 Not found!");
+        }
+        else {
+            res.render('preview', {isEmpty: "true", bulletsEmpty: "true"});
+        }
+    });
 });
 
 
