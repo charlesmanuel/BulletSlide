@@ -10,7 +10,7 @@ var express = require('express');
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 const uuid = require('uuid');
-mongoose.connect('mongodb://localhost/my_db');
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/my_db');
 var Crypto = require('crypto-js');
 
 
